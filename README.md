@@ -12,9 +12,10 @@ Ruby
 - Create a branch to work on
 
 ## To get started-:
-  Run `bundle install` to install the dependencies
-  Run `irb` to run the code by pasting it in the terminal.
-  Run `rubocop` to find and fix linters
+  - Run `bundle install` to install the dependencies
+  - Run  `ruby main.rb` to run the School Library App!
+  - Run `irb` to run the code by pasting it in the terminal.
+  - Run `rubocop` to find and fix linters
 
   ## Authors
 
