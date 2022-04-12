@@ -4,10 +4,7 @@ require './teacher'
 require './book'
 require './classroom'
 require './rental'
-require './console'
-require 'json'
-require './data/data_read'
-require './data/data_write'
+require './console_options'
 
 class App < Console
   def initialize
@@ -52,11 +49,13 @@ class App < Console
     parent_permission = gets.chomp.downcase
     case parent_permission
     when 'n'
-      student = Student.new(age, 'classroom', name, false)
+
+      Student.new(age, 'classroom', name, parent_permission: false)
       @persons << student
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
-      student = Student.new(age, 'classroom', name, true)
+      student = Student.new(age, 'classroom', name, parent_permission: false)
+
       @persons << student
       puts 'Student created successfully'
     end
@@ -84,7 +83,6 @@ class App < Console
     book = Book.new(title, author)
     @books.push(book)
     puts "Book #{title} created successfully."
-    save_books
   end
 
   def create_rental
@@ -114,12 +112,14 @@ class App < Console
     print 'To see person rentals enter the person ID: '
     id = gets.chomp.to_i
 
-    puts "Rented Books for #{id}:"
-    test = false
-    @rentals.any? do |rental|
+    puts 'Rented Books:'
+    @rentals.each do |rental|
       if rental.person.id == id
-        test = true
         puts "Peson: #{rental.person.name}  Date: #{rental.date}, Book: '#{rental.book.title}' by #{rental.book.author}"
+      else
+        puts
+        puts 'No records where found for the given ID'
+
       end
     end
     puts 'Id Error! Kindly enter correct ID' unless test
