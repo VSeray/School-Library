@@ -6,8 +6,8 @@ require './classroom'
 require './rental'
 require './console'
 require 'json'
-require './data_read'
-require './data_write'
+require './data/data_read'
+require './data/data_write'
 
 class App < Console
   def initialize
