@@ -1,28 +1,27 @@
-require_relative 'person'
-require_relative 'student'
-require_relative 'book'
-require_relative 'classroom'
-require_relative 'teacher'
-require_relative 'rental'
+require_relative './person'
+require_relative './student'
+require_relative './teacher'
+require_relative './book'
+require_relative './classroom'
+require_relative './rental'
+require_relative './console'
 
-class App
+class App < Console
   def initialize
+    super()
     @books = []
-    @people = []
+    @persons = []
     @rentals = []
   end
 
-  def console_entry_point
-    puts 'Welcome to my School Library!'
-    until list_of_options
-      input = gets.chomp
-      if input == '7'
-        puts 'Thank You for using my School Library!'
-        break
-      end
+  def list_all_books
+    puts 'Database is empty! Add a book.' if @books.empty?
+    @books.each { |book| puts "[Book] Title: #{book.title}, Author: #{book.author}" }
+  end
 
-      option input
-    end
+  def list_all_persons
+    puts 'Database is empty! Add a person.' if @persons.empty?
+    @persons.each { |person| puts "[#{person.class.name}] Name: #{person.name}, Age: #{person.age}, id: #{person.id}" }
   end
 
   def create_person
@@ -49,11 +48,12 @@ class App
     parent_permission = gets.chomp.downcase
     case parent_permission
     when 'n'
-      Student.new(age, name, parent_permission: false)
+      Student.new(age, 'classroom', name, parent_permission: false)
+      @persons << student
       puts 'Student doesnt have parent permission, cant rent books'
     when 'y'
-      student = Student.new(age, name, parent_permission: false)
-      @people << student
+      student = Student.new(age, 'classroom', name, parent_permission: false)
+      @persons << student
       puts 'Student created successfully'
     end
   end
@@ -66,30 +66,20 @@ class App
     name = gets.chomp
     print 'Enter teacher specialization: '
     specialization = gets.chomp
-    teacher = Teacher.new(age, name, specialization)
-    @people << teacher
+    teacher = Teacher.new(age, specialization, name)
+    @persons << teacher
     puts 'Teacher created successfully'
-  end
-
-  def list_all_people
-    puts 'Database is empty! Add a person.' if @people.empty?
-    @people.each { |person| puts "[#{person.class.name}] Name: #{person.name}, Age: #{person.age}, id: #{person.id}" }
   end
 
   def create_book()
     puts 'Create a new book'
     print 'Enter title: '
     title = gets.chomp
-    puts 'Enter author: '
+    print 'Enter author: '
     author = gets
     book = Book.new(title, author)
     @books.push(book)
     puts "Book #{title} created successfully."
-  end
-
-  def list_all_books
-    puts 'Database is empty! Add a book.' if @books.empty?
-    @books.each { |book| puts "[Book] Title: #{book.title}, Author: #{book.author}" }
   end
 
   def create_rental
@@ -99,7 +89,7 @@ class App
     book_id = gets.chomp.to_i
 
     puts 'Select a person from the list by its number'
-    @people.each_with_index do |person, index|
+    @persons.each_with_index do |person, index|
       puts "#{index}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
 
@@ -108,7 +98,7 @@ class App
     print 'Date: '
     date = gets.chomp.to_s
 
-    rental = Rental.new(date, @books[book_id], @people[person_id])
+    rental = Rental.new(date, @persons[person_id], @books[book_id])
     @rentals << rental
 
     puts 'Rental created successfully'
@@ -120,7 +110,12 @@ class App
 
     puts 'Rented Books:'
     @rentals.each do |rental|
-      puts "Date: #{rental.date}, Book '#{rental.book.title}' by #{rental.book.author}" if rental.person.id == id
+      if rental.person.id == id
+        puts "Peson: #{rental.person.name}  Date: #{rental.date}, Book: '#{rental.book.title}' by #{rental.book.author}"
+      else
+        puts
+        puts 'No records where found for the given ID'
+      end
     end
   end
 end
