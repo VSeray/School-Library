@@ -4,9 +4,7 @@ require './teacher'
 require './book'
 require './classroom'
 require './rental'
-
 require './console_options'
-
 
 class App < Console
   def initialize
@@ -85,8 +83,6 @@ class App < Console
     book = Book.new(title, author)
     @books.push(book)
     puts "Book #{title} created successfully."
-
-
   end
 
   def create_rental
