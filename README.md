@@ -19,7 +19,7 @@ Ruby
 
   ## Authors
 
-👤 **Vana Seeraydarian**
+👤 **Vana Seraydarian**
 
 - GitHub: [github](https://github.com/VSeray)
 
