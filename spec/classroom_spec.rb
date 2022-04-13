@@ -9,7 +9,7 @@ describe Classroom do
     end
 
     it 'the add_student method should work correctly' do
-      student1 = Student.new(20, 'English', 'Sandra', true)
+      student1 = Student.new(20, 'English', 'Sandra')
 
       english_class = Classroom.new('English')
       english_class.add_students(student1)
