@@ -1,5 +1,5 @@
-require '../person'
-require '../book'
+require_relative '../person'
+require_relative '../book'
 
 describe Book do
   context 'when testing the Book class' do
@@ -24,13 +24,13 @@ describe Book do
     end
 
     it 'should have a rental' do
-      expect(@book.rental).to be_an_instance_of Array
+      expect(@book.rentals).to be_an_instance_of Array
     end
 
     it 'testing the add_rental method to have lenght of 2' do
-      @book.add_rental(@person_1, '01/01/2020')
-      @book.add_rental(@person_2, '01/05/2020')
-      expect(@book.rental.length).to eql(2)
+      @book.add_rental('01/01/2020', @person_1)
+      @book.add_rental('01/05/2020', @person_2)
+      expect(@book.rentals.length).to eql(2)
     end
   end
 end
