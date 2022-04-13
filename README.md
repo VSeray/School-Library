@@ -15,6 +15,7 @@ Ruby
   - Run `bundle install` to install the dependencies
   - Run  `ruby main.rb` to run the School Library App!
   - Run `irb` to run the code by pasting it in the terminal.
+  - run `test rspec` to test the files.
   - Run `rubocop` to find and fix linters
 
   ## Authors

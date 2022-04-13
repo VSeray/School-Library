@@ -1,16 +1,15 @@
 require './person'
 
 class Student < Person
-  attr_reader :classroom
+  attr_accessor :classroom
 
-  # rubocop:disable Style/OptionalBooleanParameter
-  def initialize(age, classroom, name = 'Unknown', parent_permission = true)
-    super(age, name, parent_permission)
+  def initialize(age, classroom, name, parent_permission: true)
+    super(age, name)
     @classroom = classroom
+    @parent_permission = parent_permission
   end
-  # rubocop:enable Style/OptionalBooleanParameter
 
-  def classroom=(classroom)
+  def add_classroom(classroom)
     @classroom = classroom
     classroom.students.push(self) unless classroom.students.include?(self)
   end
