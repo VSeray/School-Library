@@ -44,13 +44,3 @@ def save_rentals(date, person_id, book_id)
     file.puts(JSON.pretty_generate(new_data))
   end
 end
-
-
-
-
-
-
-
-
-
-
