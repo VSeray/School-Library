@@ -6,7 +6,7 @@ describe Person do
     before(:each) do
       @person = Person.new(55, 'Joe Cole', parent_permission: false)
       @book = Book.new('The Great Albions', 'Random Dude')
-      @newBook = Book.new('The Great Gatsby', 'F. Scott Fitzgerald')
+      @new_book = Book.new('The Great Gatsby', 'F. Scott Fitzgerald')
     end
 
     describe '#new' do
@@ -31,7 +31,7 @@ describe Person do
 
     it 'Test add_rental method, it lenght should equal 2' do
       @person.add_rental('01/01/2020', @book)
-      @person.add_rental('01/05/2020', @newBook)
+      @person.add_rental('01/05/2020', @new_book)
       expect(@person.rentals.length).to eql(2)
     end
 
