@@ -1,0 +1,26 @@
+[
+  {
+    "occupation": "Student",
+    "name": "Vana",
+    "age": 20,
+    "parent_permission": true
+  },
+  {
+    "occupation": "Teacher",
+    "name": "Natalia",
+    "age": 25,
+    "specialization": "Rails"
+  },
+  {
+    "occupation": "Student",
+    "name": "Sandra",
+    "age": 12,
+    "parent_permission": false
+  },
+  {
+    "occupation": "Teacher",
+    "name": "Jamal",
+    "age": 53,
+    "specialization": "Biology"
+  }
+]
