@@ -1,5 +1,5 @@
-require_relative '../person'
-require_relative '../book'
+require '../person'
+require '../book'
 
 describe Book do
   context 'when testing the Book class' do
